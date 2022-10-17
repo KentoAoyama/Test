@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 
 public class SceneSelectorAttribute : PropertyAttribute
@@ -26,15 +27,12 @@ public class SceneDrawer : PropertyDrawer
 
         Setup(property);
 
-        //int sceneIndex = EditorBuildSettings.scenes.ToList().FindIndex(s => s.path == property.stringValue);
-
+        int sceneIndex = EditorBuildSettings.scenes.ToList().FindIndex(s => s.path == property.stringValue);
         _sceneIndex = EditorGUI.Popup(position, label, _sceneIndex, _sceneNames);
-
-        //property.stringValue = EditorBuildSettings.scenes[_sceneIndex].path;       
 
         if (EditorGUI.EndChangeCheck())
         {
-            property.stringValue = EditorBuildSettings.scenes[_sceneIndex].path;
+            property.stringValue = _sceneNames[_sceneIndex].text;
         }
 
         EditorGUI.EndProperty();
