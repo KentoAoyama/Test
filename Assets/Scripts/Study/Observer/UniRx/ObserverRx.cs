@@ -1,6 +1,5 @@
 using UnityEngine;
 using UniRx;
-using System;
 
 public class ObserverRx : MonoBehaviour
 {
@@ -16,19 +15,19 @@ public class ObserverRx : MonoBehaviour
             var subject = subjectObject.GetComponent<SubjectRx>();
 
             //V‚µ‚¢ŠÄ‹‘ÎÛ‚ğw“Ç‚µA’l‚ª•Ï‰»‚µ‚½‚Æ‚«‚Ìˆ—‚ğ“o˜^‚·‚é
-            //subject.SubjectUniRx.Subscribe(i => OnFinished(i));
+            subject.SubjectUniRx.Subscribe(i => Finished(i));
 
-            subject.SubjectUniRx
-                .DelayFrame(300)
-                .Select(i => i += 100)
-                .Subscribe(i => OnFinished(i));
+            //subject.SubjectUniRx
+            //    .DelayFrame(300)
+            //    .Select(i => i += 100)
+            //    .Subscribe(i => OnFinished(i));
 
             //ŠÄ‹‘ÎÛ‚ğ3•bŒã‚Éíœ
             Destroy(subjectObject, 3.0f);
         }
     }
 
-    private void OnFinished(int score)
+    private void Finished(int score)
     {
         Debug.Log($"Subject‚©‚çƒXƒRƒA‚ª”­s‚³‚ê‚Ü‚µ‚½BScore‚Ío{score}p‚Å‚·");
     }

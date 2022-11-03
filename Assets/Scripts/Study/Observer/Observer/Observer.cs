@@ -13,7 +13,7 @@ public class Observer : MonoBehaviour, IObserver<int>
     private GameObject _subjectPrefab;
 
     /// <summary>
-    /// 購読したObjectがもつIDisposableインターフェースを保存するための変数
+    /// 購読したObjectがもつIDisposableインターフェースのインスタンスを保存するための変数
     /// </summary>
     private IDisposable _disposable;
 
@@ -38,7 +38,7 @@ public class Observer : MonoBehaviour, IObserver<int>
         }
     }
 
-    //削除された際に購読を解除する
+    //不要な監視を行わないようにするため、削除された際に購読を解除する
     private void OnDestroy()
     {
         _disposable.Dispose();

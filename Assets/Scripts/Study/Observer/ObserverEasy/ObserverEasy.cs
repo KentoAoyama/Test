@@ -14,7 +14,7 @@ public class ObserverEasy : MonoBehaviour
             var subject = go.GetComponent<SubjectEasy>();
 
             // 監視対象が消えたらコールバック(監視対象を購読)
-            subject.OnFinished += OnFinished;
+            subject.OnFinished += Finished;
 
             // 監視対象を3秒後に削除
             Destroy(go, 3);
@@ -22,7 +22,7 @@ public class ObserverEasy : MonoBehaviour
     }
 
     // 監視対象からのコールバック
-    private void OnFinished(int value)
+    private void Finished(int value)
     {
         Debug.Log($"Subjectからスコアが発行されました。Scoreは｛{value}｝です");
     }
